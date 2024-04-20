@@ -14,6 +14,11 @@ def plot_data(ax, data, title, xlabel, ylabel, kind="line", ids=None):
     ax.grid(True)
     ax.tick_params(axis='x', rotation=90)  # Rotate labels to prevent overlap
 
+
+# 1. Request time
+
+
+
 def get_data(id, scope):
     """Fetch data from the server and measure the request time."""
     try:
