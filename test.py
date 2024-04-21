@@ -13,7 +13,6 @@ def get_data(id, scope):
         response.raise_for_status()
         end_time = time.time()
         is_hit = response.json().get('fromCache', False)
-        print(f"isFromCache:{response.json()["fromCache"]}")
         return {
             'data': response.json(),
             'time': (end_time - start_time) * 1000,  # Convert seconds to milliseconds
@@ -24,7 +23,7 @@ def get_data(id, scope):
         return None
     
 def generate_random_id():
-    return random.randint(1, 100_000)
+    return random.randint(1, 300_000)
 
 def print_api_options():
     print("API Options:")
@@ -43,13 +42,14 @@ def main():
     print_api_options()
     scope = input("Enter API option: ")
 
-    for _ in range(int(amount_of_requests)):
+    for x in range(int(amount_of_requests)):
         id = generate_random_id()
         data = get_data(id, api_options[int(scope) - 1])
         if data:
             source = data['data']['source']
             response_source[source] = response_source.get(source, 0) + 1
             responses_by_id[id] = data
+            print(f"ID: {id}, Request: {x}, Cache: {'Hit' if data['hit'] else 'Miss'}")
             if data['hit']:
                 cache_hits_times.append(data['time'])
             else:
