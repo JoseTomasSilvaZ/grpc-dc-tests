@@ -2,7 +2,6 @@ import requests
 import random
 import time
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 
 def get_data(id, scope):
@@ -15,7 +14,7 @@ def get_data(id, scope):
         is_hit = response.json().get('fromCache', False)
         return {
             'data': response.json(),
-            'time': (end_time - start_time) * 1000,  # Convert seconds to milliseconds
+            'time': (end_time - start_time) * 1000,
             'hit': is_hit
         }
     except requests.RequestException as e:
@@ -23,7 +22,7 @@ def get_data(id, scope):
         return None
     
 def generate_random_id():
-    return random.randint(1, 300_000)
+    return random.randint(1, 80_000)
 
 def print_api_options():
     print("API Options:")
