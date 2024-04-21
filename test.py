@@ -39,10 +39,11 @@ def main():
     responses_by_id = {}
     response_source = {}
     api_options = ['classic', 'partitioned', 'replicated']
+    amount_of_requests = input("Enter the amount of requests: ")
     print_api_options()
     scope = input("Enter API option: ")
 
-    for _ in range(10000):
+    for _ in range(int(amount_of_requests)):
         id = generate_random_id()
         data = get_data(id, api_options[int(scope) - 1])
         if data:
